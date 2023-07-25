@@ -119,12 +119,12 @@ Tstar 은 네가지 정보를 가지는 튜플 형태.
 Lambda 는 가중치 parameter 로 큰 영향을 안끼침.
 
 
-##You Only Look Once: Unified, Real-Time Object Detection 
+## You Only Look Once: Unified, Real-Time Object Detection 
 7/25
 
 Abstract 
 
-###1. Introduction 
+### 1. Introduction 
 
 Reframe object detection as a single regression problem
 
@@ -134,7 +134,7 @@ A single convolutional network predicts
 
 Real-time speed
 
-###Method
+### 2. Method
 
 Each grid predicts 1) B 개의 bounding boxes 2) confidence score
 
@@ -153,13 +153,13 @@ IOU
 Class conditional class probability C = Pr(class|object)
 Class-specific 
 
-###Sum-Squared Error
+### Sum-Squared Error
 1. Weights localization error equally  with classification error
 2. Overpowering the gradient from cells that do contain objects
 
 
 
-###Limitations of YOLO
+### Limitations of YOLO
 
 1. Spatial constraint limits the number of nearby objects that our model can predict
     1. 무리지어 나타내는 small objects 못잡음 (ex: flock of birds)
@@ -167,7 +167,7 @@ Class-specific
 3. Treats errors the same in small bounding boxes vs large bounding boxes
     1. Sum-Squared Error
 
-###Comparison to other detection systems
+### Comparison to other detection systems
 
 DPM
 
@@ -189,7 +189,7 @@ Fast R-CNN, Faster R-CNN
 -여전히 real-time 어려움
 -focus on speeding up the R-CNN network
 
-###Experiments:
+### Experiments:
 High mAP (mean average precision) in real-time detectors (여러 class)
 
 Vs Fast R-CNN
@@ -204,11 +204,11 @@ Generalizability: Person detection in Artwork
  - good performance
 
 
-##U-Net: Convolutional Networks for Biomedical Image Segmentation
+## U-Net: Convolutional Networks for Biomedical Image Segmentation
 
-###Basic summary:image segmentation for small datasets
+### Basic summary:image segmentation for small datasets
 
-###특징:
+### 특징:
 No padding -> smaller output
 Cropping -> loss of border pixels
 
