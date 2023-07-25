@@ -3,7 +3,7 @@
 연구 논문을 읽고 분석
 
 ## Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks 
-
+7/19
 ### Abstract:
 State-of-the-art object detection 문제: 물체가 어디에 있는지, 그리고 그 물체가 어떤 class 인지 구별하는 문제
 
@@ -117,4 +117,117 @@ Tstar 은 네가지 정보를 가지는 튜플 형태.
 
 1/Ncls, Nreg는 weight parameter. Normalization 을 진행함. 
 Lambda 는 가중치 parameter 로 큰 영향을 안끼침.
+
+
+##You Only Look Once: Unified, Real-Time Object Detection 
+7/25
+
+Abstract 
+
+###1. Introduction 
+
+Reframe object detection as a single regression problem
+
+A single convolutional network predicts
+-multiple bounding boxes
+-class probabilities for those boxes
+
+Real-time speed
+
+###Method
+
+Each grid predicts 1) B 개의 bounding boxes 2) confidence score
+
+Each bounding box consists 5 predictions:
+x, y, w, h ,confidence
+
+x, y: center of the box
+W, h  the width and height
+
+Confidence score
+Pr(object)
+= 박스 안에 있을 확률
+IOU
+=  
+
+Class conditional class probability C = Pr(class|object)
+Class-specific 
+
+###Sum-Squared Error
+1. Weights localization error equally  with classification error
+2. Overpowering the gradient from cells that do contain objects
+
+
+
+###Limitations of YOLO
+
+1. Spatial constraint limits the number of nearby objects that our model can predict
+    1. 무리지어 나타내는 small objects 못잡음 (ex: flock of birds)
+2. Hard to generalize to objects in new of unusual aspect ratios or configurations
+3. Treats errors the same in small bounding boxes vs large bounding boxes
+    1. Sum-Squared Error
+
+###Comparison to other detection systems
+
+DPM
+
+Sliding window approach
+-일정한 크기를 갖는 window 를 이미지 왼쪽 위부터 모든 영억을 탐색함
+-real time 불가능 정확도도 yolo 보다 낮음
+
+R-CNN
+
+Region proposal
+Selective search algorithm
+-후보 영역을 구하는데 사용되는 방법
+	1. 초기 영역 생성, 2. 작은 영역의 통합 (비슷한 영역끼리 greedy algorithm) 3. 후보 영역 생성 (2단계 통합된 이미지들을 기반으로 바운딩 박스 추출)
+	2000개 받아옴
+
+Differences - YOLO -> spatial constaraaints on the grid cell proposals far fewer bounding boxes (98 vs 2000)
+
+Fast R-CNN, Faster R-CNN
+-여전히 real-time 어려움
+-focus on speeding up the R-CNN network
+
+###Experiments:
+High mAP (mean average precision) in real-time detectors (여러 class)
+
+Vs Fast R-CNN
+- Higher Localization error
+- Lower background error
+Combining Fast R-CNN and YOLO
+- YOLO 와 Fast R-CNN이 유사한 bounding box를 예측하는지 확인
+- Gives the prediction aa boost
+- 
+
+Generalizability: Person detection in Artwork
+ - good performance
+
+
+##U-Net: Convolutional Networks for Biomedical Image Segmentation
+
+###Basic summary:image segmentation for small datasets
+
+###특징:
+No padding -> smaller output
+Cropping -> loss of border pixels
+
+Mirroring Extrapolate
+- 현미경에 세포 이미지를 다룰때 사용됨. 
+- 원본 이미지를 좌우 대칭으로 확장시킨다.
+    - Output 이 input보다 작기 때문에 크기를 맞추기 위해
+
+Overlap - tile strategy
+
+Weighted Loss
+D1: distance to the border of the nearest cell
+D2: to the second nearest cell
+
+No batch, one big image
+High momentum (0.99)
+
+Data Augmentation: ( rotation, shift, deformation, …)
+
+Random elastic deformation:
+
 
